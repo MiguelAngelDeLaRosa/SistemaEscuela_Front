@@ -1,23 +1,31 @@
 import dotenv from 'dotenv';
+import { CookieService } from "./cookieService.js";
 
 dotenv.config()
 
 export class ServicioTarea {
-    
+
     constructor() {
-        this.urlTarea = 'http://localhost:'+process.env.PORT + process.env.URL_TAREA
+        this.urlTarea = 'http://localhost:' + process.env.PORT + process.env.URL_TAREA
+        this.cookie = new CookieService();
     }
 
-    async crearTarea(tarea){
+    async crearTarea(tarea, token) {
         try {
             let response = await fetch(this.urlTarea, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(tarea)
-            });
-            let json = await response.json();
+            })
+            let json;
+            if (response.ok) {
+                json = await response.json();
+            } else {
+                throw new Error('La solicitud falló con estado ' + response.status);
+            }
             return json;
         } catch (error) {
             console.log('Error al crear tarea: ', error);
@@ -25,12 +33,13 @@ export class ServicioTarea {
         }
     }
 
-    async actualizarTarea(tarea, id){
+    async actualizarTarea(tarea, id, token) {
         try {
-            let response = await fetch(this.urlTarea+"/editar/"+id , {
+            let response = await fetch(this.urlTarea + "/editar/" + id, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
                 },
                 body: JSON.stringify(tarea)
             })
@@ -42,12 +51,13 @@ export class ServicioTarea {
         }
     }
 
-    async eliminarTarea(id){
+    async eliminarTarea(id, token) {
         try {
-            await fetch(this.urlTarea+"/eliminar/"+id, {
+            await fetch(this.urlTarea + "/eliminar/" + id, {
                 method: "DELETE",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
                 },
             })
         } catch (error) {
@@ -56,9 +66,15 @@ export class ServicioTarea {
         }
     }
 
-    async obtenerTareas(){
+    async obtenerTareas(token) {
         try {
-            let response = await fetch(this.urlTarea);
+            let response = await fetch(this.urlTarea, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                },
+            });
             let json = await response.json()
             return json;
         } catch (error) {
@@ -67,9 +83,15 @@ export class ServicioTarea {
         }
     }
 
-    async obtenerTareaPorId(id){
+    async obtenerTareaPorId(id, token) {
         try {
-            let response = await fetch(this.urlTarea+"/obtener/"+id);
+            let response = await fetch(this.urlTarea + "/obtener/" + id, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                },
+            });
             let json = await response.json()
             return json;
         } catch (error) {
