@@ -2,6 +2,9 @@ import { AppUserService } from "../../service/appUserService.js";
 import { CookieService } from "../../service/cookieService.js";
 import { LoginDto } from "../DTO/loginDTO.js";
 
+const scookie = new CookieService();
+scookie.deleteCookie("User")
+
 iniciarSesion()
 registro()
 
@@ -13,7 +16,11 @@ function iniciarSesion(){
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
 
-        verificarUsuario(username, password);
+        if (username != "" || password != ""){
+            verificarUsuario(username, password);
+        } else {
+            document.getElementById("errorMessage").style.display = "block";
+        }
     });
 }
 

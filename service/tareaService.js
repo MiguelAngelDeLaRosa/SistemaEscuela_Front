@@ -1,12 +1,11 @@
-import dotenv from 'dotenv';
 import { CookieService } from "./cookieService.js";
-
-dotenv.config()
+const PORT = 8080;
+const URL_TAREA = "/api/v1/tareas"
 
 export class ServicioTarea {
 
     constructor() {
-        this.urlTarea = 'http://localhost:' + process.env.PORT + process.env.URL_TAREA
+        this.urlTarea = 'http://localhost:' + PORT + URL_TAREA
         this.cookie = new CookieService();
     }
 

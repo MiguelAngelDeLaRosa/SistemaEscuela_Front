@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/menu-form.css">
+    <script type="module" src="../js/admin-publish.js"></script>
+    <title>Sistema Escuela</title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <a href="./admin.html" target="_self">Ver tareas</a>
+        <a href="#">Verificar tareas</a>
+        <a href="#">Generar reporte</a>
+    </div>
+
+    <div class="content">
+        <form id="publicarTarea">
+            <h1>Sistema Escuela</h1>
+
+            <div>
+                <input type="text" id="titulo" name="titulo" placeholder="Titulo de la tarea" required>
+            </div>
+
+            <div>
+                <input type="text" id="materia" name="materia" placeholder="Materia" required>
+            </div>
+
+            <div>
+                <input type="submit" value="Publicar tarea" id="btnTarea">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
