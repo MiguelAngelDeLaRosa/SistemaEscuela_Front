@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login.css">  
+    <script type="module" src="../js/register.js"></script>
+    <title>Sistema Escuela</title>
+</head>
+<body>
+    <div class="form">
+      
+        <form id="loginForm">
+
+            <div>
+                <h2>Registrarse</h2>
+            </div>
+
+            <div>
+                <input type="text" id="firstName" name="firstName" placeholder="Nombre" required>
+            </div>
+            <div>
+                <input type="text" id="lastName" name="lastName" placeholder="Apellido" required>
+            </div>
+            <div>
+                <input type="email" id="email" name="email" placeholder="E-mail" required>
+            </div>
+            <div>
+                <input type="text" id="phone" name="phone" placeholder="Número de telefono" required>
+            </div>
+            <div>
+                <input type="text" id="address" name="address" placeholder="Dirección" required>
+            </div>
+            <div>
+                <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+            </div>
+            <div>
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            </div>
+            <div>
+                <input type="submit" value="Registrarse" id="registerButton">
+            </div>
+            <div>
+                <input type="submit" value="Iniciar sesión" id="loginButton">
+            </div>
+            <p id="errorMessage" style="color: red; display: none;">Error al Registrarse.</p>
+        </form>
+        
+  </div> <!-- /form -->
+</body>
+</html>

@@ -1,9 +1,14 @@
+const PORT = 8080
+const URL_APP_USER = "/account"
+
 export class AppUserService {
-    #urlUsuario = 'http://localhost:'+process.env.PORT + process.env.URL_APP_USER
+    constructor(){
+        this.urlUsuario = 'http://localhost:'+ PORT + URL_APP_USER
+    }
 
     async register(registro){
         try {
-            const response = await fetch(this.#urlUsuario + '/register', {
+            const response = await fetch(this.urlUsuario + '/register', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -20,7 +25,7 @@ export class AppUserService {
 
     async login(user) {
         try {
-            const response = await fetch(this.#urlUsuario + '/login', {
+            const response = await fetch(this.urlUsuario + '/login', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -37,7 +42,7 @@ export class AppUserService {
 
     async obtenerPerfil(token){
         try {
-            const response = await fetch(this.#urlUsuario + '/profile', {
+            const response = await fetch(this.urlUsuario + '/profile', {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json",
