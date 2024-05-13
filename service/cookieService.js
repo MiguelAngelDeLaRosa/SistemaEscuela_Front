@@ -5,7 +5,7 @@ export class CookieService {
         const expirationDate = new Date();
         expirationDate.setTime(expirationDate.getTime() + (days * 24 * 60 * 60 * 1000));
         const expires = "expires=" + expirationDate.toUTCString();
-        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        document.cookie = name + "=" + value + ";" + expires + ";path=http://127.0.0.1:5500/";
     }
 
     getCookie(name) {
