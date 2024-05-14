@@ -22,6 +22,7 @@ function inicio(){
                     <td>${dato.titulo}</td>
                     <td>${dato.materia}</td>
                     <td>${dato.completada}</td>
+                    <td><input type="submit" value="Completar" id="btnCompletar"></td>
                 `;
                 tablaBody.appendChild(fila);
             });
