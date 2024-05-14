@@ -1,5 +1,3 @@
-import amqp from 'amqplib'
-
 const PORT = 8080
 const URL_RABBIT = "/api/v1"
 const URL_NOTIFICACIONES = "/notificar"
