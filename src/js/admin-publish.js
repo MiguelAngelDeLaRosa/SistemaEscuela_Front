@@ -22,7 +22,7 @@ async function crearTarea(tarea){
     const serviceTarea = new ServicioTarea();
     const galleta = new CookieService();
 
-    const resultado = await serviceTarea.crearTarea(tarea, galleta.getCookie("User"));
+    const resultado = await serviceTarea.crearTarea(tarea, galleta.getCookie(galleta.getCookie("User")));
 
     if (resultado) {
         alert("Se publico la tarea con exito")

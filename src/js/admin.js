@@ -13,7 +13,7 @@ function inicio(){
             tablaBody.innerHTML = '';
         
             const service = new ServicioTarea();
-            const tareas = await service.obtenerTareas(galleta.getCookie("User"));
+            const tareas = await service.obtenerTareas(galleta.getCookie(galleta.getCookie("User")));
             
             tareas.forEach(dato => {
                 const fila = document.createElement('tr');
@@ -21,7 +21,6 @@ function inicio(){
                     <td>${dato.id}</td>
                     <td>${dato.titulo}</td>
                     <td>${dato.materia}</td>
-                    <td>${dato.completada}</td>
                 `;
                 tablaBody.appendChild(fila);
             });

@@ -4,6 +4,7 @@ import { LoginDto } from "../DTO/loginDTO.js";
 
 const scookie = new CookieService();
 scookie.deleteCookie("User")
+scookie.deleteCookie("token")
 
 iniciarSesion()
 registro()
@@ -40,7 +41,8 @@ async function verificarUsuario(username, password){
     const verificar = await userService.login(user);
 
     if (verificar) {
-        galleta.setCookie("User", verificar.token, 1);
+        galleta.setCookie("User", verificar.user.username, 1);
+        galleta.setCookie(galleta.getCookie("User"), verificar.token, 1);
         if (verificar.user.role === "client"){
             // Direccionar a pagina de cliente
             window.location.href = "../html/appPadre.html"
