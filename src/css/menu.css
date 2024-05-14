@@ -25,6 +25,12 @@ body {
     margin-left: 250px;
     padding: 20px;
 }
+input[type="submit"] {
+    background-color: #FA0303;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
 h1 {
     text-align: center;
 }
