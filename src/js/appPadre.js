@@ -45,7 +45,7 @@ function inicio() {
             })
         }
 
-        function completarTarea(id, titulo, materia, completada) {
+        async function completarTarea(id, titulo, materia, completada) {
             const rabbit = new RabbitService();
             completada = true;
             const contenido = {
@@ -56,6 +56,7 @@ function inicio() {
             }
             const notificacion = new Notificacion("Tarea verificada y completada por el padre", "AppPadre", "ValidarTareas", contenido);
             console.log(notificacion);
+            await rabbit.enviarNotificacion(notificacion, galleta.getCookie(galleta.getCookie("User")));
         }
 
         document.addEventListener('DOMContentLoaded', llenarTabla);

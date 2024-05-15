@@ -27,6 +27,23 @@ export class RabbitService {
         }
     }
 
+    async listarNotificaciones(token){
+        try {
+            const response = await fetch('http://localhost:' + PORT + URL_RABBIT + '/notificaciones', {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            let json = await response.json();
+            return json;
+        } catch (error) {
+            console.log('Error al obtener notificaciones: ', error);
+            return null;
+        }
+    }
+
     async enviarMensaje(mensaje, token) {
         try {
             const response = await fetch(this.urlMensajes, {
