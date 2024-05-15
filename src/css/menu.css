@@ -10,7 +10,7 @@ body {
     top: 0;
     left: 0;
     background-color: #333;
-    padding-top: 60px;
+    padding-top: 120px;
 }
 .sidebar a {
     padding: 10px;
@@ -21,6 +21,14 @@ body {
 .sidebar a:hover {
     background-color: #555;
 }
+
+.sidebar img {
+    width: 100px; 
+    height: 100px; 
+    position: absolute;
+    top: 10px;
+    left: 70px;
+  }
 .content {
     margin-left: 250px;
     padding: 20px;
