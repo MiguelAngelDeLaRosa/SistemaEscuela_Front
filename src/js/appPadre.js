@@ -11,7 +11,6 @@ inicio();
 function inicio() {
     if (galleta.getCookie("User") != null) {
         async function llenarTabla() {
-            alert("Bienvenido");
             const tablaBody = document.querySelector('table tbody');
 
             tablaBody.innerHTML = '';

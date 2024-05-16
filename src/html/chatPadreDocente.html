@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/chat.css">
-    <script type="module" src="../js/appPadre.js"></script>
+    <script type="module" src="../js/mensajes-padre.js"></script>
     <title>Sistema Escuela</title>
 </head>
 
@@ -20,7 +20,7 @@
 
     <div class="chatbox">
         <div class="chatbox-header">
-          
+
         </div>
         <section class="buscador">
             <input type="text" placeholder="Buscar Padre de Familia">
@@ -28,21 +28,19 @@
         <div class="chat-container">
             <div class="chat-listado">
                 <div class="chat-item">
-                    <div class="chat-item-title">Nombre: </div>
-                    <div class="alumno">Alumno: </div>
+                    <div class="chat-item-title"></div>
+                    <div class="alumno"></div>
                 </div>
             </div>
             <div class="chat-conversation">
-                <div class="chat-header">
-                    <div class="chat-titulo">Nombre Docente</div>
-                </div>
                 <div class="chat-messages">
-                    </div>
+                </div>
                 <div class="chat-input">
-                    <input type="text" placeholder="Mensaje...">
-                    <button>Enviar</button>
+                    <input type="text" id="mensajeInput" placeholder="Mensaje...">
+                    <button id="btnEnviar">Enviar</button>
                 </div>
             </div>
         </div>
 </body>
+
 </html>
