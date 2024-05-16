@@ -4,6 +4,8 @@ import { Tarea } from "../DTO/tareaDTO.js"
 
 publicarTarea();
 
+const galleta = new CookieService();
+
 function publicarTarea(){
     document.getElementById("btnTarea").addEventListener("click", function(event){
         event.preventDefault();
