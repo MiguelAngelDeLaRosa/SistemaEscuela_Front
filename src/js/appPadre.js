@@ -2,14 +2,16 @@ import { ServicioTarea } from "../../service/tareaService.js";
 import { CookieService } from "../../service/cookieService.js";
 import { RabbitService } from "../../service/rabbitMqService.js";
 import { Notificacion } from "../DTO/notificacion.js";
+import { AppUserService } from "../../service/appUserService.js";
 var galleta = new CookieService();
+var appUser = new AppUserService();
 
 inicio();
 
 function inicio() {
     if (galleta.getCookie("User") != null) {
-        console.log(galleta.getCookie("User"))
         async function llenarTabla() {
+            alert("Bienvenido :" + await appUser.obtenerPerfil(galleta.getCookie(galleta.getCookie("User"))));
             const tablaBody = document.querySelector('table tbody');
 
             tablaBody.innerHTML = '';
@@ -45,7 +47,7 @@ function inicio() {
             })
         }
 
-        function completarTarea(id, titulo, materia, completada) {
+        async function completarTarea(id, titulo, materia, completada) {
             const rabbit = new RabbitService();
             completada = true;
             const contenido = {
@@ -54,8 +56,10 @@ function inicio() {
                 materia: materia,
                 completada: completada
             }
-            const notificacion = new Notificacion("Tarea verificada y completada por el padre", "AppPadre", "ValidarTareas", contenido);
+            const notificacion = new Notificacion("Tarea verificada y completada por el padre", "AppPadres", "ValidarTareas", contenido);
             console.log(notificacion);
+            await rabbit.enviarNotificacion(notificacion, galleta.getCookie(galleta.getCookie("User")));
+            alert("Notificacion enviada para validar la tarea")
         }
 
         document.addEventListener('DOMContentLoaded', llenarTabla);
