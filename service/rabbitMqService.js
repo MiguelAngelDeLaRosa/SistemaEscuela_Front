@@ -61,4 +61,21 @@ export class RabbitService {
             return null;
         }
     }
+
+    async listarMensajes(token){
+        try {
+            const response = await fetch('http://localhost:' + PORT + URL_RABBIT + '/mensajes', {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            let json = await response.json();
+            return json;
+        } catch (error) {
+            console.log('Error al obtener mensajes: ', error);
+            return null;
+        }
+    }
 }

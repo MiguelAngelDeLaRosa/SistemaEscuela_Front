@@ -11,7 +11,7 @@ inicio();
 function inicio() {
     if (galleta.getCookie("User") != null) {
         async function llenarTabla() {
-            alert("Bienvenido :" + await appUser.obtenerPerfil(galleta.getCookie(galleta.getCookie("User"))));
+            alert("Bienvenido");
             const tablaBody = document.querySelector('table tbody');
 
             tablaBody.innerHTML = '';
@@ -41,7 +41,7 @@ function inicio() {
                     const materia = fila.querySelector('td:nth-child(3)').textContent;
                     const completada = fila.querySelector('td:nth-child(4)').textContent;
 
-                    console.log(id);
+                    console.log(completada);
                     completarTarea(id, titulo, materia, completada);
                 }
             })
@@ -49,17 +49,20 @@ function inicio() {
 
         async function completarTarea(id, titulo, materia, completada) {
             const rabbit = new RabbitService();
-            completada = true;
             const contenido = {
                 id: id,
                 titulo: titulo,
                 materia: materia,
                 completada: completada
             }
-            const notificacion = new Notificacion("Tarea verificada y completada por el padre", "AppPadres", "ValidarTareas", contenido);
-            console.log(notificacion);
-            await rabbit.enviarNotificacion(notificacion, galleta.getCookie(galleta.getCookie("User")));
-            alert("Notificacion enviada para validar la tarea")
+            if (completada === true) {
+                alert('Esta tara ya esta completada');
+            } else {
+                const notificacion = new Notificacion("Tarea verificada y completada por el padre", "AppPadres", "ValidarTareas", contenido);
+                console.log(notificacion);
+                await rabbit.enviarNotificacion(notificacion, galleta.getCookie(galleta.getCookie("User")));
+                alert("Notificacion enviada para validar la tarea")
+            }
         }
 
         document.addEventListener('DOMContentLoaded', llenarTabla);
