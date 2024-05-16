@@ -6,12 +6,13 @@ import { Tarea } from "../DTO/tareaDTO.js"
 const galleta = new CookieService();
 const tareaService = new ServicioTarea();
 
+var tareas = [];
+
 async function getNotificaciones() {
     const rabbit = new RabbitService();
     const notis = await rabbit.listarNotificaciones(galleta.getCookie(galleta.getCookie("User")));
     const ultimas10 = notis.slice(-10);
     console.log(ultimas10)
-    var tareas = [];
 
     for (const element of ultimas10) {
         if (element.remitente === "AppPadres") {
@@ -20,10 +21,10 @@ async function getNotificaciones() {
         }
     }
 
-    listarTareas(tareas);
+    listarTareas();
 }
 
-function listarTareas(tareas) {
+function listarTareas() {
     const tablaBody = document.querySelector('table tbody');
 
     tablaBody.innerHTML = '';
@@ -61,7 +62,9 @@ function listarTareas(tareas) {
 async function updateEstado(id, titulo, materia, completada) {
     completada = true
     const tarea = new Tarea(titulo, materia, completada);
-    const nuevaTarea = await tareaService.actualizarTarea(tarea, id, galleta.getCookie(galleta.getCookie("User")))
+    const nuevaTarea = await tareaService.actualizarTarea(tarea, id, galleta.getCookie(galleta.getCookie("User")));
+    alert('Se ha validado la tarea');
+    listarTareas();
 }
 
 getNotificaciones();
